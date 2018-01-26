@@ -1,0 +1,36 @@
+## importing models
+from apps.likes_books.models import *
+
+Book.objects.all()
+User.objects.all()
+
+u1 = User.objects.create(first_name='Mike', last_name='Choi', email='mike@dojo.com')
+u2 = User.objects.create(first_name='Speros', last_name='Choi', email='speros@dojo.com')
+u3 = User.objects.create(first_name='John', last_name='Choi', email='john@dojo.com')
+
+b1 = Book.objects.create(name='C#', desc='C#', uploader=u1)
+b2 = Book.objects.create(name='Java', desc='Java', uploader=u1)
+
+b3 = Book.objects.create(name='Python', desc='Python', uploader=u2)
+b4 = Book.objects.create(name='PHP', desc='PHP', uploader=u2)
+
+b5 = Book.objects.create(name='Ruby', desc='Ruby', uploader=u2)
+b6 = Book.objects.create(name='JavaScript', desc='JavaScript', uploader=u3)
+
+u1.liked_books.add(Book.objects.last())
+u1.liked_books.add(Book.objects.first())
+
+u2.liked_books.add(Book.objects.first())
+u2.liked_books.add(Book.objects.get(id=3))
+
+u3.liked_books.add(Book.objects.get(id=1))
+u3.liked_books.add(Book.objects.get(id=2))
+u3.liked_books.add(Book.objects.get(id=3))
+u3.liked_books.add(Book.objects.get(id=4))
+u3.liked_books.add(Book.objects.get(id=5))
+u3.liked_books.add(Book.objects.get(id=6))
+
+Book.objects.first().liked_users.all()
+Book.objects.first().uploader
+Book.objects.get(id=2).liked_users.all()
+Book.objects.get(id=2).uploader

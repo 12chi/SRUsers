@@ -1,0 +1,54 @@
+## importing models
+from apps.books_authors.models import *
+
+Book.objects.all()
+Author.objects.all()
+
+b1 = Book.objects.create(name='C Sharp', desc='C Sharp')
+b2 = Book.objects.create(name='Java', desc='Java')
+b3 = Book.objects.create(name='Python', desc='Python')
+b4 = Book.objects.create(name='PHP', desc='PHP')
+b5 = Book.objects.create(name='Ruby', desc='Ruby')
+
+
+a1 = Author.objects.create(first_name='Mike', last_name='Choi', email='mike@dojo.com')
+a2 = Author.objects.create(first_name='Speros', last_name='Choi', email='speros@dojo.com')
+a3 = Author.objects.create(first_name='John', last_name='Choi', email='john@dojo.com')
+a4 = Author.objects.create(first_name='Jaydee', last_name='Choi', email='jaydee@dojo.com')
+a5 = Author.objects.create(first_name='Jay', last_name='Choi', email='jay@dojo.com')
+
+b1 = Book.objects.get(id=5)
+b1.name = "C#"
+b1.save()
+
+a1 = Author.objects.get(id=5)
+a1.first_name = "Ketul"
+a1.save()
+
+Book.objects.first().authors.add(Author.objects.first())
+Book.objects.get(id=2).authors.add(Author.objects.first())
+
+Book.objects.get(id=1).authors.add(Author.objects.get(id=2))
+Book.objects.get(id=2).authors.add(Author.objects.get(id=2))
+Book.objects.get(id=3).authors.add(Author.objects.get(id=2))
+
+Book.objects.get(id=1).authors.add(Author.objects.get(id=3))
+Book.objects.get(id=2).authors.add(Author.objects.get(id=3))
+Book.objects.get(id=3).authors.add(Author.objects.get(id=3))
+Book.objects.get(id=4).authors.add(Author.objects.get(id=3))
+
+Book.objects.get(id=1).authors.add(Author.objects.get(id=4))
+Book.objects.get(id=2).authors.add(Author.objects.get(id=4))
+Book.objects.get(id=3).authors.add(Author.objects.get(id=4))
+Book.objects.get(id=4).authors.add(Author.objects.get(id=4))
+Book.objects.get(id=5).authors.add(Author.objects.get(id=4))
+
+Book.objects.get(id=3).authors.all()
+
+Book.objects.get(id=4).authors.remove(Book.objects.get(id=4).authors.first())
+
+Book.objects.get(id=2).authors.add(Author.objects.get(id=5))
+
+Book.objects.all().filter(authors = Author.objects.get(id=3)).all()
+
+Book.objects.all().filter(authors = Author.objects.get(id=2)).all()

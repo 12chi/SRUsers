@@ -1,0 +1,31 @@
+## importing models
+from apps.dojo_ninjas.models import *
+
+Dojo.objects.all()
+Ninja.objects.all()
+
+d1 = Dojo.objects.create(name='CodingDojo Silicon Valley', city='Mountain View', state='CA')
+d2 = Dojo.objects.create(name='CodingDojo Seattle', city='Washington', state='WA')
+d3 = Dojo.objects.create(name='CodingDojo New York', city='New York', state='NY')
+
+d1.delete()
+d2.delete()
+d3.delete()
+
+d1 = Dojo.objects.create(name='CodingDojo Silicon Valley', city='Mountain View', state='CA')
+d2 = Dojo.objects.create(name='CodingDojo Seattle', city='Washington', state='WA')
+d3 = Dojo.objects.create(name='CodingDojo New York', city='New York', state='NY')
+
+n1 = Ninja.objects.create(first_name='tom', last_name='jones', dojo= d1)
+n2 = Ninja.objects.create(first_name='tom', last_name='king', dojo= d1)
+n3 = Ninja.objects.create(first_name='tom', last_name='young', dojo= d1)
+n4 = Ninja.objects.create(first_name='John', last_name='jones', dojo= d2)
+n5 = Ninja.objects.create(first_name='john', last_name='king', dojo= d2)
+n6 = Ninja.objects.create(first_name='John', last_name='Young', dojo= d2)
+n7 = Ninja.objects.create(first_name='jack', last_name='jones', dojo= d3)
+n8 = Ninja.objects.create(first_name='jack', last_name='king', dojo= d3)
+n9 = Ninja.objects.create(first_name='jack', last_name='Young', dojo= d3)
+
+Dojo.objects.first().ninjas.all()
+
+Dojo.objects.last().ninjas.all()

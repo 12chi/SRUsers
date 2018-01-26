@@ -1,0 +1,32 @@
+## importing models
+from apps.user_login.models import *
+
+User.objects.all()
+
+User.objects.last()
+
+User.objects.create(first_name="Jerry", last_name="Rice", email="jerry@rice.com", age=130)
+User.objects.create(first_name="Tom", last_name="Jones", email="tom@tom.com", age=120)
+User.objects.create(first_name="Josh", last_name="Young", email="josh@josh.com", age=160)
+User.objects.create(first_name="John", last_name="Doe", email="john@john.com", age=160)
+
+User.objects.first()
+
+User.objects.all().order_by("first_name")
+
+User.objects.all().order_by("-first_name")
+
+u1 = User.objects.get(id=3)
+u1.last_name = "Changed"
+u1.save()
+
+User.object.get(id=4).delete()
+
+def validate_name(name):
+    if len(name) > 255:
+        return "name longer than 255"
+    else:
+        return name
+
+>>> validate_name(User.objects.get(id=3).first_name)
+u'John'
